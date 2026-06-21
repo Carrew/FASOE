@@ -1,1 +1,377 @@
-fnvnv
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fassah School</title>
+
+<style>
+:root{
+  --cream:#f5f1e6;
+  --brown:#5a3e2b;
+  --dark:#2f1f16;
+  --white:#fff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:var(--cream);
+  color:var(--brown);
+}
+
+/* LOADING SCREEN */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:var(--cream);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+#loader img{
+  width:80px;
+  margin-bottom:10px;
+}
+
+#loader span{
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(255,255,255,0.95);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 18px;
+  z-index:10;
+  backdrop-filter: blur(10px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:42px;
+  height:42px;
+  border-radius:6px;
+}
+
+.logo h1{
+  font-size:16px;
+}
+
+.menu{
+  display:flex;
+  gap:18px;
+}
+
+.menu a{
+  text-decoration:none;
+  color:var(--brown);
+  font-weight:500;
+}
+
+.menu a:hover{
+  color:var(--dark);
+}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+
+.hamburger div{
+  width:24px;
+  height:3px;
+  background:var(--brown);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* VIDEO */
+.hero video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  min-width:100%;
+  min-height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+/* fallback logo background */
+.hero-bg{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:url("https://raw.githubusercontent.com/Carrew/FASOE/refs/heads/main/fassah%20logo.jpg") center/120px no-repeat var(--cream);
+}
+
+/* overlay */
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+}
+
+/* hero content */
+.hero-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  padding:20px;
+}
+
+.hero-content h2{
+  font-size:42px;
+}
+
+.hero-content p{
+  max-width:600px;
+  margin-top:10px;
+  opacity:0.9;
+}
+
+/* CTA */
+.cta{
+  margin-top:25px;
+}
+
+.cta a{
+  display:inline-block;
+  margin:6px;
+  padding:12px 18px;
+  background:var(--brown);
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+}
+
+/* SECTIONS */
+section{
+  padding:60px 20px;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+  text-align:center;
+}
+
+.stat{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.stat h3{
+  font-size:28px;
+}
+
+/* ANNOUNCEMENTS */
+.announcements{
+  background:white;
+  border-radius:10px;
+  padding:20px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+.announcements h2{
+  margin-bottom:15px;
+}
+
+.notice{
+  padding:12px;
+  border-left:4px solid var(--brown);
+  margin-bottom:10px;
+  background:#faf7f2;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu{
+    position:absolute;
+    top:60px;
+    right:0;
+    flex-direction:column;
+    background:white;
+    width:200px;
+    padding:15px;
+    display:none;
+  }
+
+  .menu.active{
+    display:flex;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .hero-content h2{
+    font-size:28px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="https://raw.githubusercontent.com/Carrew/FASOE/refs/heads/main/fassah%20logo.jpg">
+  <span>Loading Fassah School...</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <img src="https://raw.githubusercontent.com/Carrew/FASOE/refs/heads/main/fassah%20logo.jpg">
+    <h1>Fassah School</h1>
+  </div>
+
+  <div class="menu" id="menu">
+    <a href="#home">Home</a>
+    <a href="#stats">Stats</a>
+    <a href="#announcements">Announcements</a>
+    <a href="#login">Logins</a>
+    <a href="#blog">Blog</a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div class="hero-bg"></div>
+
+  <video id="bgVideo" autoplay muted loop playsinline>
+   <source src="https://res.cloudinary.com/dnrdsr6vi/video/upload/facebook_1782007204628_360p_1_bowjsf.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h2>Welcome to Fassah School</h2>
+    <p>Discipline builds structure. Learning builds future. This is where both meet.</p>
+
+    <div class="cta">
+      <a href="#login">Student Login</a>
+      <a href="#login">Principal Login</a>
+      <a href="#blog">Blog</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <h2 style="text-align:center;margin-bottom:20px;">School Overview</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <h3>1,200+</h3>
+      <p>Students</p>
+    </div>
+
+    <div class="stat">
+      <h3>45+</h3>
+      <p>Teachers</p>
+    </div>
+
+    <div class="stat">
+      <h3>12</h3>
+      <p>Programs</p>
+    </div>
+
+    <div class="stat">
+      <h3>89%</h3>
+      <p>Success Rate</p>
+    </div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section id="announcements">
+  <div class="announcements">
+    <h2>Announcements</h2>
+
+    <div class="notice">📢 Midterm exams start next week. Students should check timetable.</div>
+    <div class="notice">📢 Registration for new students is now open.</div>
+    <div class="notice">📢 Parents meeting scheduled for Friday at 10AM.</div>
+  </div>
+</section>
+
+<!-- LOGIN PLACEHOLDER -->
+<section id="login">
+  <h2 style="text-align:center;margin-bottom:20px;">Logins</h2>
+
+  <div class="stats">
+    <a class="stat" href="#student">Student Login</a>
+    <a class="stat" href="#principal">Principal Login</a>
+    <a class="stat" href="#staff">Staff Login</a>
+  </div>
+</section>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+/* smooth video reveal */
+const video = document.getElementById("bgVideo");
+
+video.addEventListener("canplay", () => {
+  video.style.opacity = "1";
+});
+
+/* remove loader after load */
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 800);
+});
+</script>
+
+</body>
+  </html>
